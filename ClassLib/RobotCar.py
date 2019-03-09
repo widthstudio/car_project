@@ -9,7 +9,7 @@ from ClassLib.CarLights import CarLights
 
 #定义车类，调用车侧类
 class  Car(object):
-	def __init__(self,ENr,IN1r,IN2r,timerr,channelr,freqr,pwprr,ENl,IN1l,IN2l,timerl,channell,freql,pwprl,red_light,yellow_light,green_light):
+	def __init__(self,ENr,IN1r,IN2r,timerr,channelr,freqr,pwprr,ENl,IN1l,IN2l,timerl,channell,freql,pwprl,green_light,red_light,yellow_light):
 		self.right = Carside(ENr, IN1r, IN2r, timerr, channelr, freqr, pwprr)
 		self.left  = Carside(ENl, IN1l, IN2l, timerl, channell, freql, pwprl)
 		self.lights=CarLights(green_light,red_light,yellow_light)
@@ -29,7 +29,6 @@ class  Car(object):
 		self.left.back_with_speed(pwpx) 
 		self.lights.red_light_on()
 		print('back with speed ',pwpx)
-		print('red light')
 		#刹车红灯
 	def stop(self): 
 		self.lights.all_lights_off()
@@ -37,7 +36,6 @@ class  Car(object):
 		self.left.stop()
 		self.lights.red_light_on()
 		print('stop')
-		print('red light')
 		#熄火灭灯   
 	def cutoff(self):
 		self.lights.all_lights_off()

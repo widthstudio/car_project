@@ -28,11 +28,11 @@ class CarLights(object):
 		print('green light off')
 	def all_lights_on(self):
 		self.green_light.value(1)
-		self.green_light.value(1)
-		self.green_light.value(1)
+		self.yellow_light.value(1)
+		self.red_light.value(1)
 		print('all lights on')
 	def all_lights_off(self):
 		self.green_light.value(0)
-		self.green_light.value(0)
-		self.green_light.value(0)
+		self.yellow_light.value(0)
+		self.red_light.value(0)
 		print('all lights off')
