@@ -1,7 +1,8 @@
-from ClassLib.RobotCar import Car
+from ClassLib.Bluetooth_Car import Bluetooth_Car
 from pyb import LED
 from pyb import Pin
 from pyb import Timer
+from pyb import UART
 
 ENA=Pin('Y1',Pin.OUT_PP)
 ENB=Pin('Y2',Pin.OUT_PP)
@@ -16,21 +17,10 @@ green_light	= Pin(Pin.cpu.A14,Pin.OUT_PP)
 yellow_light= Pin(Pin.cpu.A15,Pin.OUT_PP)
 
 
-My_Car=Car(ENA,IN1,IN2,8,1,20000,0,ENB,IN3,IN4,8,2,20000,0,green_light,red_light,yellow_light)
+My_Car=Bluetooth_Car(ENA,IN1,IN2,8,1,20000,0,ENB,IN3,IN4,8,2,20000,0,green_light,red_light,yellow_light,1,115200)
 while True:
-	order=input('请输入命令:')
-	print('\n')
-	if order=='0':
-		My_Car.lights.all_lights_on()
-	elif order=='1':
-		My_Car.forward_with_speed(pwpx=100)
-	elif order=='2':
-		My_Car.back_with_speed(pwpx=80)
-	elif order=='3':
-		My_Car.turn_left(level=2)
-	elif order=='4':
-		My_Car.stop()
-	elif order=='5':
-		My_Car.cutoff()
-	order=' '
-	print('\n -----------------------------------\n')
+	My_Car.bluetooth_receive_and_run()
+	pyb.delay(100) #100ms收一次
+	
+	
+	

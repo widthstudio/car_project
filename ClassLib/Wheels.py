@@ -10,12 +10,12 @@ class Wheels(object):
 		self.wheels.IN2	= IN2x
 	def forward(self):
 		self.EN.value(1)
-		self.IN1.value(0)
-		self.IN2.value(1)
-	def back(self):
-		self.EN.value(1)
 		self.IN1.value(1)
 		self.IN2.value(0)
+	def back(self):
+		self.EN.value(1)
+		self.IN1.value(0)
+		self.IN2.value(1)
 	def stop(self):
 		self.EN.value(1)
 		self.IN1.value(0)
