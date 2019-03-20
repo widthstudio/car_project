@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=PC13 Pin=U1-2
+Removed Member From Class: ClassName=PyBoard_PCB Member=U1
+Added Component: Designator=U?(STM-LQFP64_N)
+Added Pin To Net: NetName=PC13 Pin=U?-2
+Added Member To Class: ClassName=PyBoard_PCB Member=Component U? STM32F405RGT6
+Added Room: Name=PyBoard_PCB
