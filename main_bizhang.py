@@ -14,8 +14,8 @@ IN2=Pin('Y4',Pin.OUT_PP)
 IN3=Pin('Y5',Pin.OUT_PP)
 IN4=Pin('Y6',Pin.OUT_PP)
 
-ECHO=Pin('Y11',Pin.OUT_PP)
-TRIG=Pin('Y12',Pin.OUT_PP)
+ECHO=Pin('Y11',Pin.IN)
+TRIG=Pin('Y10',Pin.OUT_PP)
 
 My_Servo=Servo(1)
 

@@ -10,7 +10,7 @@ class Obstacle_Avoidance_Car(Car):
 		self.trig=trig		#超声波发送
 		self.echo=echo		#超声波接收
 		self.flag_turn = 0
-		turn_list = [-90,90] #-90表示舵机右转，90表示左边
+		self.turn_list = [-90,90] #-90表示舵机右转，90表示左边
 		
 	#超声波测距函数	
 	def Measure(self):		
@@ -33,6 +33,7 @@ class Obstacle_Avoidance_Car(Car):
 		self.servo.angle(angle) #舵机朝向正前方，准备测正前方距离
 		pyb.delay(300)		#舵机转动延时
 		self.Measure()
+		print(self.l)
 		#self.servo.angle(0)	#回正
 	
 	
@@ -43,14 +44,14 @@ class Obstacle_Avoidance_Car(Car):
 	def Obstacle_Avoidance_Forward(self):
 		self.Turn_and_Measure( angle=0 )
 		if 0.1<self.l<0.8:				#如果正前方距离 0.1~0.8m
-			self.Turn_and_Measure( angle=turn_list[flag_turn] )  #假定flag_turn = 0表示优先右转 ，测量右侧安全距离（猜-90表示右边）
+			self.Turn_and_Measure( angle=self.turn_list[self.flag_turn] )  #假定flag_turn = 0表示优先右转 ，测量右侧安全距离（猜-90表示右边）
 			if self.l<0.5:	#如果右侧安全距离小于0.5m，说明有障碍物
-				self.Turn_and_Measure( angle=turn_list[(flag_turn+1)%2] )  #测量另一侧安全距离
+				self.Turn_and_Measure( angle=self.turn_list[(self.flag_turn+1)%2] )  #测量另一侧安全距离
 				if self.l<0.5:
 					self.back_with_speed()
 					pyb.delay(1000)
 				else:
-					if flag_turn:
+					if self.flag_turn:
 						self.turn_right(3)
 						pyb.delay(900)   #右转90°时间
 					else:
@@ -58,7 +59,7 @@ class Obstacle_Avoidance_Car(Car):
 						pyb.delay(1120)	 #左转90°时间
 					##self.flag_turn=(self.flag_turn+2)%2 转向优先级不变，这句就不写了
 			else:
-				if flag_turn:		
+				if self.flag_turn:		
 					self.turn_left(3)
 					pyb.delay(1120)	 #左转90°时间
 				else:
