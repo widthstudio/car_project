@@ -1,0 +1,184 @@
+PARTS LIST
+
+MicroUSB          MicroUSB        *
+2.2p              SMD0603         C1
+2.2p              SMD0603         C2
+2u2               SMD0603         C3
+2u2               SMD0603         C4
+2.2p              SMD0603         C5
+2.2p              SMD0603         C6
+104               SMD0603         C7
+105               SMD0603         C9
+104               SMD0603         C10
+104               SMD0603         C11
+104               SMD0603         C12
+104               SMD0603         C13
+104               SMD0603         C14
+2u2               SMD0603         C15
+22u               SMD0603         C16
+104               SMD0603         C17
+2u2               SMD0603         C18
+Diode             SS24 - small    D0
+LED RED           LED0603         D1
+LED GREEN         LED0603         D2
+LED Yellow        LED0603         D3
+LED Blue          LED0603         D4
+1uH               SMD0603         L1
+10K               SMD0603         R1
+100K              SMD0603         R2
+10K               SMD0603         R3
+560               SMD0603         R4
+560               SMD0603         R5
+560               SMD0603         R6
+560               SMD0603         R7
+22                SMD0603         R8
+22                SMD0603         R9
+560               SMD0603         R10
+560               SMD0603         R11
+SW-PB             SPST-2          S1
+USER              SPST-2          S2
+STM32F405RGT6     LQFP64_M        U1
+XC6206            SOT-23_N        XC1
+XTAL              TXC_9H03200019  Y1
+XTAL              R38             Y2
+XTAL              R38             Y3
+EOS
+NET LIST
+
+NODENAME VIN              $
+    C18        2  D0         2  XC1        1
+NODENAME VBUS             $
+    *          1  D0         1
+NODENAME VBAT             $
+    C9         2  U1         1
+NODENAME R\S\T\           $
+    R1         1  S1         1  U1         7
+NODENAME PD2              $
+    U1        54
+NODENAME PC13             $
+    U1         2
+NODENAME PC12             $
+    U1        53
+NODENAME PC11             $
+    U1        52
+NODENAME PC10             $
+    U1        51
+NODENAME PC9              $
+    U1        40
+NODENAME PC8              $
+    U1        39
+NODENAME PC7              $
+    U1        38
+NODENAME PC6              $
+    U1        37
+NODENAME PC5              $
+    U1        25
+NODENAME PC4              $
+    U1        24
+NODENAME PC3              $
+    U1        11
+NODENAME PC2              $
+    U1        10
+NODENAME PC1              $
+    U1         9
+NODENAME PC0              $
+    U1         8
+NODENAME PB15             $
+    U1        36
+NODENAME PB14             $
+    U1        35
+NODENAME PB13             $
+    U1        34
+NODENAME PB12             $
+    U1        33
+NODENAME PB11             $
+    U1        30
+NODENAME PB10             $
+    U1        29
+NODENAME PB9              $
+    U1        62
+NODENAME PB8              $
+    U1        61
+NODENAME PB7              $
+    U1        59
+NODENAME PB6              $
+    U1        58
+NODENAME PB5              $
+    U1        57
+NODENAME PB4_LED4         $
+    R11        2
+NODENAME PB4              $
+    U1        56
+NODENAME PB3              $
+    R3         2  U1        55
+NODENAME PB2-             $
+    U1        28
+NODENAME PB1              $
+    U1        27
+NODENAME PB0              $
+    U1        26
+NODENAME PA15_LED3        $
+    R7         2  U1        50
+NODENAME PA14_LED2        $
+    R5         2  U1        49
+NODENAME PA13_LED1        $
+    R4         2  U1        46
+NODENAME PA12_DP          $
+    R9         1  U1        45
+NODENAME PA11_DM          $
+    R8         1  U1        44
+NODENAME PA10_ID          $
+    R10        1  U1        43
+NODENAME PA9_VSUB         $
+    R6         1  U1        42
+NODENAME PA8              $
+    U1        41
+NODENAME PA7              $
+    U1        23
+NODENAME PA6              $
+    U1        22
+NODENAME PA5              $
+    U1        21
+NODENAME PA4              $
+    U1        20
+NODENAME PA3              $
+    U1        17
+NODENAME PA2              $
+    U1        16
+NODENAME PA1              $
+    U1        15
+NODENAME PA0              $
+    U1        14
+NODENAME NetR3-1          $
+    R3         1  S2         1
+NODENAME NetD4-1          $
+    D4         1  R11        1
+NODENAME NetD3-1          $
+    D3         1  R7         1
+NODENAME NetD2-1          $
+    D2         1  R5         1
+NODENAME NetD1-1          $
+    D1         1  R4         1
+NODENAME NetC16-1         $
+    C16        1  C17        1  L1         2  U1        13
+NODENAME NetC7-2          $
+    C7         2  S1         2
+NODENAME NetC6-2          $
+    C6         2  U1         4  Y3         2
+NODENAME NetC5-2          $
+    C5         2  U1         3  Y3         1
+NODENAME NetC4-2          $
+    C4         2  U1        31
+NODENAME NetC3-2          $
+    C3         2  U1        47
+NODENAME NetC2-1          $
+    C2         1  U1         6  Y1         2
+NODENAME NetC1-1          $
+    C1         1  U1         5  Y1         1
+NODENAME GND              $
+    *          5  *          6  *          7  C1         2  C2         2  C3         1  C4         1  C5         1  C6         1  C7         1  C9         1  C10        1  C11        1  C12        1  C13        1  C14        1  C15        1  C16        2  C17        2  C18        1  D1         2  D2         2  D3         2  D4         2  R2         1  S2         2  U1        12  U1        18  U1        63  XC1        3
+NODENAME BOOT0            $
+    R2         2  U1        60  Y2         1
+NODENAME 3.3V             $
+    C10        2  C11        2  C12        2  C13        2  C14        2  C15        2  L1         1  R1         2  U1        19  U1        32  U1        48  U1        64  XC1        2
+EOS
