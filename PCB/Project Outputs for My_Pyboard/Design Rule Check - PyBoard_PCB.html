@@ -1,0 +1,639 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-16">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : sans-serif;
+			color : white;
+			background-color : #21489e;
+			padding: 0.3em;
+		}
+		body {
+			font-family : verdana;
+		}
+		td, th {
+			padding: 0.5em;
+			text-align : center;
+			width : 18%;
+		}
+		th {
+			background-color : #A6CAF0;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+		}
+		
+		.DRC_summary_header {							
+			padding-bottom : 0.1em;
+			border : 0px solid black;							
+			width: 100%;
+                        align: right;
+                        
+		}
+
+		.DRC_summary_header_col1, 
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3
+		{
+			color : black;
+			font-size:150%;
+                        padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2: 0em;
+			border : 0px solid black;
+			width : auto;
+			vertical-align: top;
+			font-weight: bold;				
+		}
+		
+		.DRC_summary_header_col1 	
+		{		                       
+			text-align: right;
+                        width: auto;	
+		}
+
+		.DRC_summary_header_col2 	
+		{		
+			text-align: center;	
+		}
+
+		.DRC_summary_header_col3 	
+		{		
+			text-align: left;	
+		}
+
+
+		
+		.header_holder
+		{
+		Width = 100%;
+		border = 0px solid green;
+		padding = 0;
+		}
+		
+		
+		
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+                {
+			left:0;
+			top:0;
+			padding-top : 0.1em;			
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top
+
+		}
+		.front_matter {	
+			
+			margin-top: 5px;
+ 			margin-left: 0px;					 			
+ 			horizontal-align: left;
+		}
+				
+		
+		.front_matter_column1 {
+			width : 10em;	
+			text-align  : right;
+			padding-right:0.1em;
+			
+		}
+		
+		.front_matter_column2 {
+                        width: 0.1em;
+			align: center;
+			text-align : center;
+			margin-right  : 0.1em;	
+			margin-left   : 0.1em;
+		}
+		.front_matter_column3 {
+			width         : auto;  
+			text-align    : left;	
+			margin-right  : 0.5em;				
+		}
+		
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : right;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #EEEEE0 
+		}
+		tr.onmouseout_even { 
+			background-color : #F3F3E3   
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : lightYellow
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #008000 
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script></head>
+<body onload=""><img ALT="Altium" src="
+			file://Z:\ALL_SOFTWARE\AD09_WINTER\Templates\AD-rgb_logo_223x64.gif
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td Style="width:70%">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">2019/3/23</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">16:05:59</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3"><a href="file:///Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc" class="file"><acronym title="Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc">Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td Style="Width:30%">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3" style="color : red">108</td></tr>
+</table>
+</td>
+</table>
+<hr><a name="ID4YMSHNUG5VOXEUGIPAO0RDGGVJ0ASSTT3T1WCPFHB1HXI450S0NL"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDACSCDBYIE0ADNQO1PJBJYTETZK3VUVO5A5KAGFEKETZUAZ1502TN">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGEUFAYOZJSI152D0EPEYP2XSL4FWUCFCSFTYPNEF2ZJ2LGY35YK">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">106</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXO4SWQAILDJOLEW1LMUV5NOO2DMD3SQAAHHBIDMKSU5XJASHM1QM">Clearance Constraint (Gap=0.1778mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1PSYH0RQPNF3LT5BTGC0YQF1PBHLPFXZK4AQS5E1RTGCEIFNVFN">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVDEDINE4PSFQGANCDAOAU0O3IMWC5VNMXGF1NKMAMBCOWFWNXWN">Width Constraint (Min=0.1778mm) (Max=0.508mm) (Preferred=0.2032mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIEBJQN1BR45MEQ31ZGQHIQL4UEJTVQE1HDFJNJHF3X2UUSPGKU1L">Routing Via (MinHoleWidth=0.7112mm) (MaxHoleWidth=0.7112mm) (PreferredHoleWidth=0.7112mm) (MinWidth=1.27mm) (MaxWidth=1.27mm) (PreferedWidth=1.27mm) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">108</td>
+</tr>
+</table><br><hr><a name="IDGEUFAYOZJSI152D0EPEYP2XSL4FWUCFCSFTYPNEF2ZJ2LGY35YK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15665mil|Location2.X=15665mil|Location1.Y=1370mil|Location2.Y=1470mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15665mil|Location2.X=15665mil|Location1.Y=1370mil|Location2.Y=1470mil|Absolute=True">Un-Routed Net Constraint: Net VIN Between Pad P1-2 (368.173,-86.868mm) And Pad P1-3 (368.173,-84.328mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14615mil|Location2.X=15195mil|Location1.Y=1590mil|Location2.Y=1510mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14615mil|Location2.X=15195mil|Location1.Y=1590mil|Location2.Y=1510mil|Absolute=True">Un-Routed Net Constraint: Net VIN Between Pad C2-2 (341.503,-81.28mm) And Pad LM1-3 (356.235,-83.312mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15195mil|Location2.X=15665mil|Location1.Y=1510mil|Location2.Y=1470mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15195mil|Location2.X=15665mil|Location1.Y=1510mil|Location2.Y=1470mil|Absolute=True">Un-Routed Net Constraint: Net VIN Between Pad LM1-3 (356.235,-83.312mm) And Pad P1-3 (368.173,-84.328mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15665mil|Location2.X=15665mil|Location1.Y=1270mil|Location2.Y=1370mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15665mil|Location2.X=15665mil|Location1.Y=1270mil|Location2.Y=1370mil|Absolute=True">Un-Routed Net Constraint: Net VIN Between Pad P1-1 (368.173,-89.408mm) And Pad P1-2 (368.173,-86.868mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15665mil|Location2.X=15665mil|Location1.Y=1470mil|Location2.Y=1570mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15665mil|Location2.X=15665mil|Location1.Y=1470mil|Location2.Y=1570mil|Absolute=True">Un-Routed Net Constraint: Net VIN Between Pad P1-3 (368.173,-84.328mm) And Pad P1-4 (368.173,-81.788mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4378.819mil|Location2.X=16699mil|Location1.Y=1082.598mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4378.819mil|Location2.X=16699mil|Location1.Y=1082.598mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net VBUS Between Pad *1-1 (81.504,-94.168mm) And Pad R1-2 (394.4366,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16699mil|Location2.X=17125mil|Location1.Y=1600mil|Location2.Y=1435mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16699mil|Location2.X=17125mil|Location1.Y=1600mil|Location2.Y=1435mil|Absolute=True">Un-Routed Net Constraint: Net VBUS Between Pad R1-2 (394.4366,-81.026mm) And Pad D1-1 (405.257,-85.217mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=6895mil|Location1.Y=2997.638mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=6895mil|Location1.Y=2997.638mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net VBAT Between Pad U1-1 (41.136,-45.526mm) And Pad C12-2 (145.415,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3118.268mil|Location2.X=11724mil|Location1.Y=2629.528mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3118.268mil|Location2.X=11724mil|Location1.Y=2629.528mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net PB11_Y10_SDA Between Pad U1-30 (49.486,-54.876mm) And Pad R11-2 (268.0716,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3098.583mil|Location2.X=11860mil|Location1.Y=2629.528mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3098.583mil|Location2.X=11860mil|Location1.Y=2629.528mil|Location2.Y=1599mil|Absolute=True">Un-Routed Net Constraint: Net PB10_Y9_SCL Between Pad U1-29 (48.986,-54.876mm) And Pad R10-2 (271.526,-81.0514mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.787mil|Location2.X=12144mil|Location1.Y=3070.472mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.787mil|Location2.X=12144mil|Location1.Y=3070.472mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net PB7_X10_SDA Between Pad U1-59 (45.486,-43.676mm) And Pad R9-2 (278.7396,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2980.472mil|Location2.X=12314mil|Location1.Y=3070.472mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2980.472mil|Location2.X=12314mil|Location1.Y=3070.472mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net PB6_X9_SCL Between Pad U1-58 (45.986,-43.676mm) And Pad R8-2 (283.0576,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3019.843mil|Location2.X=9325mil|Location1.Y=3070.472mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3019.843mil|Location2.X=9325mil|Location1.Y=3070.472mil|Location2.Y=1599mil|Absolute=True">Un-Routed Net Constraint: Net PB4_P2_BLUE Between Pad U1-56 (46.986,-43.676mm) And Pad R16-2 (207.137,-81.0514mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3039.528mil|Location2.X=12829mil|Location1.Y=3070.472mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3039.528mil|Location2.X=12829mil|Location1.Y=3070.472mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net PB3_X17_SW Between Pad U1-55 (47.486,-43.676mm) And Pad R7-2 (296.1386,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3078.898mil|Location2.X=7110mil|Location1.Y=2629.528mil|Location2.Y=1531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3078.898mil|Location2.X=7110mil|Location1.Y=2629.528mil|Location2.Y=1531mil|Absolute=True">Un-Routed Net Constraint: Net PB2_BOOT1 Between Pad U1-28 (48.486,-54.876mm) And Pad R18-1 (150.876,-82.7786mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1690mil|Location2.X=3078.898mil|Location1.Y=1330mil|Location2.Y=2629.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1690mil|Location2.X=3078.898mil|Location1.Y=1330mil|Location2.Y=2629.528mil|Absolute=True">Un-Routed Net Constraint: Net PB2_BOOT1 Between Pad P2-3 (13.208,-87.884mm) And Pad U1-28 (48.486,-54.876mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3137.953mil|Location2.X=9940mil|Location1.Y=3070.472mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3137.953mil|Location2.X=9940mil|Location1.Y=3070.472mil|Location2.Y=1599mil|Absolute=True">Un-Routed Net Constraint: Net PA15_P3_YEL Between Pad U1-50 (49.986,-43.676mm) And Pad R14-2 (222.758,-81.0514mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3157.638mil|Location2.X=10875mil|Location1.Y=3070.472mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3157.638mil|Location2.X=10875mil|Location1.Y=3070.472mil|Location2.Y=1599mil|Absolute=True">Un-Routed Net Constraint: Net PA14_P4_GRN Between Pad U1-49 (50.486,-43.676mm) And Pad R13-2 (246.507,-81.0514mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=11440mil|Location1.Y=2958.268mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=11440mil|Location1.Y=2958.268mil|Location2.Y=1599mil|Absolute=True">Un-Routed Net Constraint: Net PA13_P5_RED Between Pad U1-46 (52.336,-46.526mm) And Pad R12-2 (260.858,-81.0514mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=16291mil|Location1.Y=2938.583mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=16291mil|Location1.Y=2938.583mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net PA12_DP Between Pad U1-45 (52.336,-47.026mm) And Pad R3-1 (384.0734,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=16461mil|Location1.Y=2918.898mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=16461mil|Location1.Y=2918.898mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net PA11_DM Between Pad U1-44 (52.336,-47.526mm) And Pad R2-1 (388.3914,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=15791mil|Location1.Y=2899.213mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=15791mil|Location1.Y=2899.213mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net PA10_ID Between Pad U1-43 (52.336,-48.026mm) And Pad R4-1 (371.3734,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=16631mil|Location1.Y=2879.528mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=16631mil|Location1.Y=2879.528mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net PA9_VSUB Between Pad U1-42 (52.336,-48.526mm) And Pad R1-1 (392.7094,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=9720mil|Location1.Y=2879.528mil|Location2.Y=1531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=9720mil|Location1.Y=2879.528mil|Location2.Y=1531mil|Absolute=True">Un-Routed Net Constraint: Net NetR15_1 Between Pad U1-7 (41.136,-48.526mm) And Pad R15-1 (217.17,-82.7786mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2388.504mil|Location2.X=2660mil|Location1.Y=3089.697mil|Location2.Y=2880mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2388.504mil|Location2.X=2660mil|Location1.Y=3089.697mil|Location2.Y=2880mil|Absolute=True">Un-Routed Net Constraint: Net NetR15_1 Between Pad S2-1 (30.95,-43.1877mm) And Track on layer Top Layer (37.846,-48.514mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3030mil|Location2.X=12761mil|Location1.Y=3336.457mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3030mil|Location2.X=12761mil|Location1.Y=3336.457mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net NetR7_1 Between Pad S1-1 (47.244,-36.92mm) And Pad R7-1 (294.4114,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13790mil|Location2.X=14931mil|Location1.Y=1595mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13790mil|Location2.X=14931mil|Location1.Y=1595mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net NetLM1_1 Between Pad R6-2 (320.548,-81.153mm) And Pad R5-1 (349.5294,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14931mil|Location2.X=15195mil|Location1.Y=1600mil|Location2.Y=1310mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14931mil|Location2.X=15195mil|Location1.Y=1600mil|Location2.Y=1310mil|Absolute=True">Un-Routed Net Constraint: Net NetLM1_1 Between Pad R5-1 (349.5294,-81.026mm) And Pad LM1-1 (356.235,-88.392mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9156mil|Location2.X=9325mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9156mil|Location2.X=9325mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True">Un-Routed Net Constraint: Net NetD5_1 Between Pad D5-1 (202.8444,-81.026mm) And Pad R16-1 (207.137,-82.7786mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9551mil|Location2.X=9940mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9551mil|Location2.X=9940mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True">Un-Routed Net Constraint: Net NetD4_1 Between Pad D4-1 (212.8774,-81.026mm) And Pad R14-1 (222.758,-82.7786mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10166mil|Location2.X=10875mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10166mil|Location2.X=10875mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True">Un-Routed Net Constraint: Net NetD3_1 Between Pad D3-1 (228.4984,-81.026mm) And Pad R13-1 (246.507,-82.7786mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11101mil|Location2.X=11440mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11101mil|Location2.X=11440mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True">Un-Routed Net Constraint: Net NetD2_1 Between Pad D2-1 (252.2474,-81.026mm) And Pad R12-1 (260.858,-82.7786mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=5254mil|Location1.Y=2761.417mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=5254mil|Location1.Y=2761.417mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net NetC18_1 Between Pad U1-13 (41.136,-51.526mm) And Pad L1-2 (103.7336,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5355mil|Location2.X=5575mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5355mil|Location2.X=5575mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net NetC18_1 Between Pad C18-1 (106.299,-83.566mm) And Pad C19-1 (111.887,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5254mil|Location2.X=5355mil|Location1.Y=1600mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5254mil|Location2.X=5355mil|Location1.Y=1600mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net NetC18_1 Between Pad L1-2 (103.7336,-81.026mm) And Pad C18-1 (106.299,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.622mil|Location2.X=2081.417mil|Location1.Y=3090.516mil|Location2.Y=3089.697mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.622mil|Location2.X=2081.417mil|Location1.Y=3090.516mil|Location2.Y=3089.697mil|Absolute=True">Un-Routed Net Constraint: Net NetC11_2 Between Pad C11-2 (19.65,-43.16689mm) And Pad S2-2 (23.15,-43.1877mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=8180mil|Location1.Y=2938.583mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=8180mil|Location1.Y=2938.583mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net NetC10_2 Between Pad U1-4 (41.136,-47.026mm) And Pad C10-2 (178.054,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8180mil|Location2.X=8841.102mil|Location1.Y=1590mil|Location2.Y=1580mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8180mil|Location2.X=8841.102mil|Location1.Y=1590mil|Location2.Y=1580mil|Absolute=True">Un-Routed Net Constraint: Net NetC10_2 Between Pad C10-2 (178.054,-81.28mm) And Pad Y2-2 (194.846,-81.534mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=8010mil|Location1.Y=2958.268mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=8010mil|Location1.Y=2958.268mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net NetC9_2 Between Pad U1-3 (41.136,-46.526mm) And Pad C9-2 (173.736,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8010mil|Location2.X=8735.787mil|Location1.Y=1590mil|Location2.Y=1580mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8010mil|Location2.X=8735.787mil|Location1.Y=1590mil|Location2.Y=1580mil|Absolute=True">Un-Routed Net Constraint: Net NetC9_2 Between Pad C9-2 (173.736,-81.28mm) And Pad Y2-1 (192.171,-81.534mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3137.953mil|Location2.X=8570mil|Location1.Y=2629.528mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3137.953mil|Location2.X=8570mil|Location1.Y=2629.528mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net NetC8_2 Between Pad U1-31 (49.986,-54.876mm) And Pad C8-2 (187.96,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=8400mil|Location1.Y=2977.953mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.472mil|Location2.X=8400mil|Location1.Y=2977.953mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net NetC7_2 Between Pad U1-47 (52.336,-46.026mm) And Pad C7-2 (183.642,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=10436.102mil|Location1.Y=2899.213mil|Location2.Y=1580mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=10436.102mil|Location1.Y=2899.213mil|Location2.Y=1580mil|Absolute=True">Un-Routed Net Constraint: Net NetC6_1 Between Pad U1-6 (41.136,-48.026mm) And Pad Y1-2 (235.359,-81.534mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10436.102mil|Location2.X=10710mil|Location1.Y=1580mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10436.102mil|Location2.X=10710mil|Location1.Y=1580mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net NetC6_1 Between Pad Y1-2 (235.359,-81.534mm) And Pad C6-1 (242.316,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=10330.787mil|Location1.Y=2918.898mil|Location2.Y=1580mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=10330.787mil|Location1.Y=2918.898mil|Location2.Y=1580mil|Absolute=True">Un-Routed Net Constraint: Net NetC5_1 Between Pad U1-5 (41.136,-47.526mm) And Pad Y1-1 (232.684,-81.534mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10330.787mil|Location2.X=10540mil|Location1.Y=1580mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10330.787mil|Location2.X=10540mil|Location1.Y=1580mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net NetC5_1 Between Pad Y1-1 (232.684,-81.534mm) And Pad C5-1 (237.998,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4455.591mil|Location2.X=15859mil|Location1.Y=1082.598mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4455.591mil|Location2.X=15859mil|Location1.Y=1082.598mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net Net*1_4 Between Pad *1-4 (83.454,-94.168mm) And Pad R4-2 (373.1006,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4430mil|Location2.X=16359mil|Location1.Y=1082.598mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4430mil|Location2.X=16359mil|Location1.Y=1082.598mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net Net*1_3 Between Pad *1-3 (82.804,-94.168mm) And Pad R3-2 (385.8006,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4404.409mil|Location2.X=16529mil|Location1.Y=1082.598mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4404.409mil|Location2.X=16529mil|Location1.Y=1082.598mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net Net*1_2 Between Pad *1-2 (82.154,-94.168mm) And Pad R2-2 (390.1186,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11169mil|Location2.X=13935mil|Location1.Y=1600mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11169mil|Location2.X=13935mil|Location1.Y=1600mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad D2-2 (253.9746,-81.026mm) And Pad C3-1 (324.231,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8570mil|Location2.X=9224mil|Location1.Y=1500mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8570mil|Location2.X=9224mil|Location1.Y=1500mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C8-1 (187.96,-83.566mm) And Pad D5-2 (204.5716,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7590mil|Location2.X=8010mil|Location1.Y=1599mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7590mil|Location2.X=8010mil|Location1.Y=1599mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R17-2 (163.068,-81.0514mm) And Pad C9-1 (173.736,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.047mil|Location2.X=4266.614mil|Location1.Y=2629.528mil|Location2.Y=955mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.047mil|Location2.X=4266.614mil|Location1.Y=2629.528mil|Location2.Y=955mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-18 (43.486,-54.876mm) And Via (78.654,-97.409mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4481.181mil|Location2.X=5355mil|Location1.Y=1082.598mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4481.181mil|Location2.X=5355mil|Location1.Y=1082.598mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad *1-5 (84.104,-94.168mm) And Pad C18-2 (106.299,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9619mil|Location2.X=10234mil|Location1.Y=1600mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9619mil|Location2.X=10234mil|Location1.Y=1600mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad D4-2 (214.6046,-81.026mm) And Pad D3-2 (230.2256,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14105mil|Location2.X=14615mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14105mil|Location2.X=14615mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C4-1 (328.549,-83.566mm) And Pad C2-1 (341.503,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5575mil|Location2.X=5795mil|Location1.Y=1590mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5575mil|Location2.X=5795mil|Location1.Y=1590mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C19-2 (111.887,-81.28mm) And Pad C13-1 (117.475,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6455mil|Location2.X=6675mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6455mil|Location2.X=6675mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C16-1 (134.239,-83.566mm) And Pad C17-1 (139.827,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8180mil|Location2.X=8400mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8180mil|Location2.X=8400mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C10-1 (178.054,-83.566mm) And Pad C7-1 (183.642,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.622mil|Location2.X=2882.047mil|Location1.Y=3000.516mil|Location2.Y=3070.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.622mil|Location2.X=2882.047mil|Location1.Y=3000.516mil|Location2.Y=3070.472mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C11-1 (19.65,-45.45289mm) And Pad U1-63 (43.486,-43.676mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14785mil|Location2.X=15524.291mil|Location1.Y=1500mil|Location2.Y=1545mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14785mil|Location2.X=15524.291mil|Location1.Y=1500mil|Location2.Y=1545mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1-1 (345.821,-83.566mm) And Pad XC1-3 (364.599,-82.423mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.047mil|Location2.X=3030mil|Location1.Y=3070.472mil|Location2.Y=3643.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.047mil|Location2.X=3030mil|Location1.Y=3070.472mil|Location2.Y=3643.543mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-63 (43.486,-43.676mm) And Pad S1-2 (47.244,-29.12mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13790mil|Location2.X=13935mil|Location1.Y=995mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13790mil|Location2.X=13935mil|Location1.Y=995mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R6-1 (320.548,-96.393mm) And Pad C3-1 (324.231,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7110mil|Location2.X=7590mil|Location1.Y=1599mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7110mil|Location2.X=7590mil|Location1.Y=1599mil|Location2.Y=1599mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R18-2 (150.876,-81.0514mm) And Pad R17-2 (163.068,-81.0514mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10710mil|Location2.X=11169mil|Location1.Y=1590mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10710mil|Location2.X=11169mil|Location1.Y=1590mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C6-2 (242.316,-81.28mm) And Pad D2-2 (253.9746,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9224mil|Location2.X=9619mil|Location1.Y=1600mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9224mil|Location2.X=9619mil|Location1.Y=1600mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad D5-2 (204.5716,-81.026mm) And Pad D4-2 (214.6046,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=2882.047mil|Location1.Y=2781.102mil|Location2.Y=3070.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=2882.047mil|Location1.Y=2781.102mil|Location2.Y=3070.472mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-12 (41.136,-51.026mm) And Pad U1-63 (43.486,-43.676mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10234mil|Location2.X=10540mil|Location1.Y=1600mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10234mil|Location2.X=10540mil|Location1.Y=1600mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad D3-2 (230.2256,-81.026mm) And Pad C5-2 (237.998,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6895mil|Location2.X=7110mil|Location1.Y=1500mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6895mil|Location2.X=7110mil|Location1.Y=1500mil|Location2.Y=1599mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C12-1 (145.415,-83.566mm) And Pad R18-2 (150.876,-81.0514mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=2882.047mil|Location1.Y=2781.102mil|Location2.Y=2629.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2789.528mil|Location2.X=2882.047mil|Location1.Y=2781.102mil|Location2.Y=2629.528mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-12 (41.136,-51.026mm) And Pad U1-18 (43.486,-54.876mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5795mil|Location2.X=6015mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5795mil|Location2.X=6015mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C13-1 (117.475,-83.566mm) And Pad C14-1 (123.063,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5355mil|Location2.X=5575mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5355mil|Location2.X=5575mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C18-2 (106.299,-81.28mm) And Pad C19-2 (111.887,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6015mil|Location2.X=6235mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6015mil|Location2.X=6235mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C14-1 (123.063,-83.566mm) And Pad C15-1 (128.651,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6235mil|Location2.X=6455mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6235mil|Location2.X=6455mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C15-1 (128.651,-83.566mm) And Pad C16-1 (134.239,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6675mil|Location2.X=6895mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6675mil|Location2.X=6895mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C17-1 (139.827,-83.566mm) And Pad C12-1 (145.415,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4325.669mil|Location2.X=4534.331mil|Location1.Y=954.646mil|Location2.Y=954.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4325.669mil|Location2.X=4534.331mil|Location1.Y=954.646mil|Location2.Y=954.646mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad *1-7 (80.154,-97.41799mm) And Pad *1-6 (85.454,-97.41799mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4481.181mil|Location2.X=4534.331mil|Location1.Y=1082.598mil|Location2.Y=954.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4481.181mil|Location2.X=4534.331mil|Location1.Y=1082.598mil|Location2.Y=954.646mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad *1-5 (84.104,-94.168mm) And Pad *1-6 (85.454,-97.41799mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14615mil|Location2.X=14785mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14615mil|Location2.X=14785mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C2-1 (341.503,-83.566mm) And Pad C1-1 (345.821,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10540mil|Location2.X=10710mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10540mil|Location2.X=10710mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C5-2 (237.998,-81.28mm) And Pad C6-2 (242.316,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8400mil|Location2.X=8570mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8400mil|Location2.X=8570mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C7-1 (183.642,-83.566mm) And Pad C8-1 (187.96,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13935mil|Location2.X=14105mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13935mil|Location2.X=14105mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C3-1 (324.231,-83.566mm) And Pad C4-1 (328.549,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8010mil|Location2.X=8180mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8010mil|Location2.X=8180mil|Location1.Y=1500mil|Location2.Y=1500mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C9-1 (173.736,-83.566mm) And Pad C10-1 (178.054,-83.566mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2941.102mil|Location2.X=7590mil|Location1.Y=3070.472mil|Location2.Y=1531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2941.102mil|Location2.X=7590mil|Location1.Y=3070.472mil|Location2.Y=1531mil|Absolute=True">Un-Routed Net Constraint: Net BOOT0 Between Pad U1-60 (44.986,-43.676mm) And Pad R17-1 (163.068,-82.7786mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1590mil|Location2.X=2941.102mil|Location1.Y=1330mil|Location2.Y=3070.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1590mil|Location2.X=2941.102mil|Location1.Y=1330mil|Location2.Y=3070.472mil|Absolute=True">Un-Routed Net Constraint: Net BOOT0 Between Pad P2-4 (10.668,-87.884mm) And Pad U1-60 (44.986,-43.676mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14105mil|Location2.X=14999mil|Location1.Y=1590mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14105mil|Location2.X=14999mil|Location1.Y=1590mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net 5V Between Pad C4-2 (328.549,-81.28mm) And Pad R5-2 (351.2566,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15435.709mil|Location2.X=17125mil|Location1.Y=1582.402mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15435.709mil|Location2.X=17125mil|Location1.Y=1582.402mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net 5V Between Pad XC1-1 (362.349,-81.473mm) And Pad D1-2 (405.257,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15195mil|Location2.X=15435.709mil|Location1.Y=1410mil|Location2.Y=1582.402mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15195mil|Location2.X=15435.709mil|Location1.Y=1410mil|Location2.Y=1582.402mil|Absolute=True">Un-Routed Net Constraint: Net 5V Between Pad LM1-2 (356.235,-85.852mm) And Pad XC1-1 (362.349,-81.473mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14999mil|Location2.X=15195mil|Location1.Y=1600mil|Location2.Y=1410mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14999mil|Location2.X=15195mil|Location1.Y=1600mil|Location2.Y=1410mil|Absolute=True">Un-Routed Net Constraint: Net 5V Between Pad R5-2 (351.2566,-81.026mm) And Pad LM1-2 (356.235,-85.852mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13935mil|Location2.X=14105mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13935mil|Location2.X=14105mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net 5V Between Pad C3-2 (324.231,-81.28mm) And Pad C4-2 (328.549,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11860mil|Location2.X=12076mil|Location1.Y=1531mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11860mil|Location2.X=12076mil|Location1.Y=1531mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net 3V3 Between Pad R10-1 (271.526,-82.7786mm) And Pad R9-1 (277.0124,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11656mil|Location2.X=11860mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11656mil|Location2.X=11860mil|Location1.Y=1600mil|Location2.Y=1531mil|Absolute=True">Un-Routed Net Constraint: Net 3V3 Between Pad R11-1 (266.3444,-81.026mm) And Pad R10-1 (271.526,-82.7786mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12076mil|Location2.X=12246mil|Location1.Y=1600mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12076mil|Location2.X=12246mil|Location1.Y=1600mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net 3V3 Between Pad R9-1 (277.0124,-81.026mm) And Pad R8-1 (281.3304,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9720mil|Location2.X=14785mil|Location1.Y=1599mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9720mil|Location2.X=14785mil|Location1.Y=1599mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad R15-2 (217.17,-81.0514mm) And Pad C1-2 (345.821,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3157.638mil|Location2.X=5186mil|Location1.Y=2629.528mil|Location2.Y=1600mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3157.638mil|Location2.X=5186mil|Location1.Y=2629.528mil|Location2.Y=1600mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad U1-32 (50.486,-54.876mm) And Pad L1-1 (102.0064,-81.026mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1690mil|Location2.X=2901.732mil|Location1.Y=1230mil|Location2.Y=2629.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1690mil|Location2.X=2901.732mil|Location1.Y=1230mil|Location2.Y=2629.528mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad P2-1 (13.208,-90.424mm) And Pad U1-19 (43.986,-54.876mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3157.638mil|Location2.X=3230.472mil|Location1.Y=2629.528mil|Location2.Y=2997.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3157.638mil|Location2.X=3230.472mil|Location1.Y=2629.528mil|Location2.Y=2997.638mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad U1-32 (50.486,-54.876mm) And Pad U1-48 (52.336,-45.526mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6675mil|Location2.X=9720mil|Location1.Y=1590mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6675mil|Location2.X=9720mil|Location1.Y=1590mil|Location2.Y=1599mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad C17-2 (139.827,-81.28mm) And Pad R15-2 (217.17,-81.0514mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14785mil|Location2.X=15435.709mil|Location1.Y=1590mil|Location2.Y=1507.599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14785mil|Location2.X=15435.709mil|Location1.Y=1590mil|Location2.Y=1507.599mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad C1-2 (345.821,-81.28mm) And Pad XC1-2 (362.349,-83.373mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5186mil|Location2.X=5795mil|Location1.Y=1600mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5186mil|Location2.X=5795mil|Location1.Y=1600mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad L1-1 (102.0064,-81.026mm) And Pad C13-2 (117.475,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2862.362mil|Location2.X=3230.472mil|Location1.Y=3070.472mil|Location2.Y=2997.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2862.362mil|Location2.X=3230.472mil|Location1.Y=3070.472mil|Location2.Y=2997.638mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad U1-64 (42.986,-43.676mm) And Pad U1-48 (52.336,-45.526mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2901.732mil|Location2.X=3157.638mil|Location1.Y=2629.528mil|Location2.Y=2629.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2901.732mil|Location2.X=3157.638mil|Location1.Y=2629.528mil|Location2.Y=2629.528mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad U1-19 (43.986,-54.876mm) And Pad U1-32 (50.486,-54.876mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6455mil|Location2.X=6675mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6455mil|Location2.X=6675mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad C16-2 (134.239,-81.28mm) And Pad C17-2 (139.827,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6235mil|Location2.X=6455mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6235mil|Location2.X=6455mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad C15-2 (128.651,-81.28mm) And Pad C16-2 (134.239,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6015mil|Location2.X=6235mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6015mil|Location2.X=6235mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad C14-2 (123.063,-81.28mm) And Pad C15-2 (128.651,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5795mil|Location2.X=6015mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5795mil|Location2.X=6015mil|Location1.Y=1590mil|Location2.Y=1590mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad C13-2 (117.475,-81.28mm) And Pad C14-2 (123.063,-81.28mm)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1590mil|Location2.X=1690mil|Location1.Y=1230mil|Location2.Y=1230mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1590mil|Location2.X=1690mil|Location1.Y=1230mil|Location2.Y=1230mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Pad P2-2 (10.668,-90.424mm) And Pad P2-1 (13.208,-90.424mm)</acronym></a><br></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDIEBJQN1BR45MEQ31ZGQHIQL4UEJTVQE1HDFJNJHF3X2UUSPGKU1L"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Routing Via (MinHoleWidth=0.7112mm) (MaxHoleWidth=0.7112mm) (PreferredHoleWidth=0.7112mm) (MinWidth=1.27mm) (MaxWidth=1.27mm) (PreferedWidth=1.27mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4559.858mil|Location2.X=4626.913mil|Location1.Y=921.472mil|Location2.Y=988.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4559.858mil|Location2.X=4626.913mil|Location1.Y=921.472mil|Location2.Y=988.528mil|Absolute=True">Routing Via Style: Via (86.954mm,-97.409mm) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4233.087mil|Location2.X=4300.142mil|Location1.Y=921.472mil|Location2.Y=988.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=Z:\User\Desktop\car_project\PCB\PyBoard_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4233.087mil|Location2.X=4300.142mil|Location1.Y=921.472mil|Location2.Y=988.528mil|Absolute=True">Routing Via Style: Via (78.654mm,-97.409mm) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br></body>
+</html>
