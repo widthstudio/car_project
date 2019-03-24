@@ -55,23 +55,6 @@ GenerateClassCluster=0
 DocumentUniqueId=KYDDAAGS
 
 [Document2]
-DocumentPath=Project Outputs for STM32_Library\STM32_Library.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document3]
 DocumentPath=PyBoard_PCB.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -88,8 +71,8 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=IAHHVNWM
 
-[Document4]
-DocumentPath=C:\Users\Public\Documents\Altium\AD18\Library\Miscellaneous Connectors.IntLib
+[Document3]
+DocumentPath=Project Outputs for STM32_Library\STM32_Library.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -104,14 +87,6 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
-
-[GeneratedDocument1]
-DocumentPath=Project Outputs for My_Pyboard\Design Rule Check - PyBoard_PCB.html
-DItemRevisionGUID=
-
-[GeneratedDocument2]
-DocumentPath=PyBoard_PCB.PcbDoc.htm
-DItemRevisionGUID=
 
 [Configuration1]
 Name=Sources
