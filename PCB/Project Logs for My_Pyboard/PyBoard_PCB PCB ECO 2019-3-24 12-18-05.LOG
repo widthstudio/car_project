@@ -1,0 +1,97 @@
+Added Component: Designator=J1(HDR1X8)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=J2(HDR1X8)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=J3(HDR1X8)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P3(HDR1X5)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P4(HDR1X6)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P5(HDR1X6)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P6(HDR1X5)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=5V Pin=J1-1
+Added Pin To Net: NetName=5V Pin=J1-2
+Added Pin To Net: NetName=5V Pin=J1-3
+Added Pin To Net: NetName=5V Pin=J1-4
+Added Pin To Net: NetName=5V Pin=J1-5
+Added Pin To Net: NetName=5V Pin=J1-6
+Added Pin To Net: NetName=5V Pin=J1-7
+Added Pin To Net: NetName=5V Pin=J1-8
+Added Pin To Net: NetName=GND Pin=J2-1
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=GND Pin=J2-3
+Added Pin To Net: NetName=GND Pin=J2-4
+Added Pin To Net: NetName=GND Pin=J2-5
+Added Pin To Net: NetName=GND Pin=J2-6
+Added Pin To Net: NetName=GND Pin=J2-7
+Added Pin To Net: NetName=GND Pin=J2-8
+Added Pin To Net: NetName=PB9_Y4 Pin=P3-1
+Added Pin To Net: NetName=PB8_Y3 Pin=P3-2
+Added Pin To Net: NetName=PB7_X10_SDA Pin=P3-3
+Added Pin To Net: NetName=PB6_X9_SCL Pin=P3-4
+Added Pin To Net: NetName=PB3_X17_SW Pin=P3-5
+Added Pin To Net: NetName=PB11_Y10_SDA Pin=P4-1
+Added Pin To Net: NetName=PB10_Y9_SCL Pin=P4-2
+Added Pin To Net: NetName=PB1_Y12 Pin=P4-3
+Added Pin To Net: NetName=PB0_Y11 Pin=P4-4
+Added Pin To Net: NetName=PC5_X12 Pin=P4-5
+Added Pin To Net: NetName=PC4_X11 Pin=P4-6
+Added Pin To Net: NetName=PC7_Y2 Pin=P5-1
+Added Pin To Net: NetName=PC6_Y1 Pin=P5-2
+Added Pin To Net: NetName=PB15_Y8 Pin=P5-3
+Added Pin To Net: NetName=PB14_Y7 Pin=P5-4
+Added Pin To Net: NetName=PB13_Y6 Pin=P5-5
+Added Pin To Net: NetName=PB12_Y5 Pin=P5-6
+Added Pin To Net: NetName=PA7_X8 Pin=P6-1
+Added Pin To Net: NetName=PA6_X7 Pin=P6-2
+Added Pin To Net: NetName=PA5_X6 Pin=P6-3
+Added Pin To Net: NetName=PA4_X5 Pin=P6-4
+Added Pin To Net: NetName=PA3_X4 Pin=P6-5
+Added Pin To Net: NetName=PA0_X2 Pin=J3-3
+Added Net: Name=PA0_X2
+Added Pin To Net: NetName=PA1_X3 Pin=J3-2
+Added Net: Name=PA1_X3
+Added Pin To Net: NetName=PA2_X4 Pin=J3-1
+Added Net: Name=PA2_X4
+Added Pin To Net: NetName=PC0_X20 Pin=J3-7
+Added Net: Name=PC0_X20
+Added Pin To Net: NetName=PC1_X21 Pin=J3-6
+Added Net: Name=PC1_X21
+Added Pin To Net: NetName=PC2_X22 Pin=J3-5
+Added Net: Name=PC2_X22
+Added Pin To Net: NetName=PC3_X23 Pin=J3-4
+Added Net: Name=PC3_X23
+Added Pin To Net: NetName=PC13_X19 Pin=J3-8
+Added Net: Name=PC13_X19
+Added Member To Class: ClassName=PyBoard_PCB Member=Component J1 Header 8-5V
+Added Member To Class: ClassName=PyBoard_PCB Member=Component J2 Header 8-GND
+Added Member To Class: ClassName=PyBoard_PCB Member=Component J3 Header 8-Y1Y8
+Added Member To Class: ClassName=PyBoard_PCB Member=Component P3 Header 5
+Added Member To Class: ClassName=PyBoard_PCB Member=Component P4 Header 6
+Added Member To Class: ClassName=PyBoard_PCB Member=Component P5 Header 6
+Added Member To Class: ClassName=PyBoard_PCB Member=Component P6 Header 5
+Added Room: Name=PyBoard_PCB
