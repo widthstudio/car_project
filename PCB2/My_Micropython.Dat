@@ -1,0 +1,32 @@
+Field=Comment~String~Comment~100|Field=Description~String~Description~100|Field=Designator~String~Designator~100|Field=Footprint~String~Footprint~100|Field=LibRef~String~LibRef~100|Field=Quantity~Integer~Quantity~100|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~My_Micropython.PrjPCB|ReportField=ProjectFullPath~Z:\User\Desktop\car_project\PCB2\My_Micropython.PrjPCB|ReportField=Title~Bill of Materials For Project [My_Micropython.PrjPCB] (No PCB Document Selected)|ReportField=TotalQuantity~60|ReportField=ReportTime~17:07:22|ReportField=ReportDate~2019/3/30|ReportField=ReportDateTime~2019/3/30 17:07:22|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=Address1~|ReportField=Address2~|ReportField=Address3~|ReportField=Address4~|ReportField=ApprovedBy~|ReportField=Author~|ReportField=CheckedBy~|ReportField=CompanyName~|ReportField=CurrentDate~2019/3/30|ReportField=CurrentTime~17:07:15|ReportField=Date~|ReportField=DocumentFullPathAndName~Z:\User\Desktop\car_project\PCB2\PyBoard_PCB.SchDoc|ReportField=DocumentName~PyBoard_PCB.SchDoc|ReportField=DocumentNumber~|ReportField=DrawnBy~|ReportField=Engineer~|ReportField=ImagePath~|ReportField=ModifiedDate~2019/3/30|ReportField=Organization~|ReportField=Revision~|ReportField=Rule~|ReportField=SheetNumber~|ReportField=SheetTotal~|ReportField=Time~|ReportField=Title~|ReportField=DataSourceFileName~My_Micropython.PrjPCB|ReportField=DataSourceFullPath~Z:\User\Desktop\car_project\PCB2\My_Micropython.PrjPCB
+2u2|Capacitor|C1, C2, C6, C7|SMD0603|Cap|4
+2.2p|Capacitor|C3, C4, C8, C9|SMD0603|Cap|4
+100n|Capacitor|C5|SMD0603|Cap|1
+104|Capacitor|C10, C12, C13, C14, C15, C16, C18|SMD0603|Cap|7
+105|Capacitor|C11|SMD0603|Cap|1
+22u|Capacitor|C17|SMD0603|Cap|1
+Diode|Default Diode|D1|SS24 - small|Diode|1
+LED RED|红色发光二极管|D2|LED0603|LED-RED|1
+LED GREEN|绿色发光二极管|D3|LED0603|LED-GREEN|1
+LED Yellow|黄色发光二极管|D4|LED0603|LED-YELLOW|1
+LED Blue|蓝色发光二极管|D5|LED0603|LED-BLUE|1
+Header 8-5V|Header, 8-Pin|J1|HDR1X8|Header 8|1
+Header 8-GND|Header, 8-Pin|J2|HDR1X8|Header 8|1
+1uH|Inductor|L1|SMD0603|Inductor|1
+Header 4_7.4V|Header, 4-Pin|P1, P4|HDR1X4|Header 4|2
+Header 5_SUPERVOICE|Header, 5-Pin|P2|HDR1X5|Header 5|1
+Header 4_BLUETOOTH|Header, 4-Pin|P3|HDR1X4|Header 4|1
+Header 4X2_CARLIGHTS|Header, 4-Pin, Dual row|P5|HDR2X4|Header 4X2|1
+Header 2X2|Header, 2-Pin, Dual row|P6|HDR2X2|Header 2X2|1
+10K|Resistor|R1, R10, R15, R19|SMD0603|Res|4
+560|Resistor|R2, R7, R16, R17, R18, R20|SMD0603|Res|6
+22|Resistor|R3, R5|SMD0603|Res|2
+4K7|Resistor|R4, R6, R8, R9, R11, R12, R13, R14|SMD0603|Res|8
+USER|Switch|S1|SW 3X6|SW-PB|1
+SW-PB|Switch|S2|SW 3X6|SW-PB|1
+XC6206||U1|SOT-23_N|XC6206|1
+STM32F405RGT6|ARM Cortex-M4 32-bit MCU+FPU, 210 DMIPS, 1024 kB Flash, 192 kB Internal RAM, 51 I/Os, 64-pin LQFP, -40 to 85 degC, Tray|U2|LQFP64_M|STM32F405RGT6|1
+MicroUSB||U3|MicroUSB|MicroUSB|1
+L298N|Dual Full Bridge Driver|U4|Multiwatt15V|L298N|1
+8M|Crystal Oscillator|Y1|TXC_9H03200019|XTAL|1
+32K|Crystal Oscillator|Y2|TXC_9H03200019|XTAL|1
