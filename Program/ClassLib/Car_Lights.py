@@ -3,7 +3,7 @@
 #红灯代表刹车灯，倒车，刹车
 #黄灯代表转向灯，转向
 #低电平亮灯
-class CarLights(object):
+class Car_Lights(object):
 	def __init__(self, Green_light, Red_light, Yellow_light):
 		self.green_light=Green_light
 		self.red_light=Red_light

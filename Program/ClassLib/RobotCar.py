@@ -1,19 +1,14 @@
-import pyb
-from pyb import LED
-from pyb import Pin
-from pyb import Timer
-from pyb import UART
-from ClassLib.Wheels import Wheels 
-from ClassLib.PWMTimer import PWMTimer
-from ClassLib.Car_side import Carside
-from ClassLib.CarLights import CarLights
+
+from ClassLib.Car_side import Car_side
+from ClassLib.Car_Lights import Car_Lights
 
 #定义车类，调用车侧类
 class  Car(object):
 	def __init__(self,ENr,IN1r,IN2r,timerr,channelr,freqr,pwprr,ENl,IN1l,IN2l,timerl,channell,freql,pwprl,green_light,red_light,yellow_light):
-		self.right = Carside(ENr, IN1r, IN2r, timerr, channelr, freqr, pwprr)
-		self.left  = Carside(ENl, IN1l, IN2l, timerl, channell, freql, pwprl)
-		self.lights=CarLights(green_light,red_light,yellow_light)
+		self.right = Car_side(ENr, IN1r, IN2r, timerr, channelr, freqr, pwprr)
+		self.left  = Car_side(ENl, IN1l, IN2l, timerl, channell, freql, pwprl)
+		self.lights=Car_Lights(green_light,red_light,yellow_light)
+		self.command_num=9
 		self.commands = {
 		#前进3档
 		11:[1,1],12:[1,2],13:[1,3],
@@ -113,24 +108,37 @@ class  Car(object):
 			print("turn left on level ",level)
 		self.lights.yellow_light_on()
 		
-	
-	def command_process(self,command_num):   #输入代表指令的数字（见self.commands），查字典，执行响应指令
-		if command_num in self.commands.keys():
-			if self.commands[command_num][0]==-1:
-				self.cutoff()
-			elif self.commands[command_num][0]==0:
-				self.stop()
-			elif self.commands[command_num][0]==1:
-				self.forward_with_speed(self.commands[command_num][1])
-			elif self.commands[command_num][0]==2:
-				self.back_with_speed(self.commands[command_num][1])
-			elif self.commands[command_num][0]==3:
-				self.turn_left(self.commands[command_num][1])
-			elif self.commands[command_num][0]==4:
-				self.turn_right(self.commands[command_num][1])
-			return 1
+		
+	#判断self.command_num 是否符合要求	
+	def command_judge(self):
+		if self.command_num in self.commands.keys():
+			return True		#输入的指令在指令集里面
 		else:
-			return 0  #输入的指令不在指令集里面
+			return False	#输入的指令不在指令集里面
+		
+	
+	#执行命令，不判断
+	def command_execute(self,command_num):   #输入代表指令的数字（见self.commands），查字典，执行响应指令
+		if self.commands[command_num][0]==-1:
+			self.cutoff()
+		elif self.commands[command_num][0]==0:
+			self.stop()
+		elif self.commands[command_num][0]==1:
+			self.forward_with_speed(self.commands[command_num][1])
+		elif self.commands[command_num][0]==2:
+			self.back_with_speed(self.commands[command_num][1])
+		elif self.commands[command_num][0]==3:
+			self.turn_left(self.commands[command_num][1])
+		elif self.commands[command_num][0]==4:
+			self.turn_right(self.commands[command_num][1])
+			
+			
+	#判断命令是否符合条件并执行
+	def judge_and_execute(self):
+		if self.command_judge():
+			self.command_execute(self.command_num)
+		else:
+			pass
 		
 		
 
