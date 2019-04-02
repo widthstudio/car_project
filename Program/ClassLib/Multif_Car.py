@@ -20,7 +20,7 @@ class Multif_Car(Bluetooth_Car,Bizhang_Car):
 		#自由熄火
 		-1:[-1],
 		#避障模式
-		5:[5]
+		555:[555]
 		}
 		
 		#重写 command_execute
@@ -37,7 +37,7 @@ class Multif_Car(Bluetooth_Car,Bizhang_Car):
 			self.turn_left(self.commands[command_num][1])
 		elif self.commands[command_num][0]==4:
 			self.turn_right(self.commands[command_num][1])
-		elif self.commands[command_num][0]==5:
+		elif self.commands[command_num][0]==555:
 			self.bizhang()
 			
 def main():

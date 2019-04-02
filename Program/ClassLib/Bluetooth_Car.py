@@ -19,8 +19,8 @@ class  Bluetooth_Car(Car):
 		
 	def read_command_string_and_judge(self):
 		#读取蓝牙信息
-		#self.command_string=self.bluetooth.read(self.bluetooth.any())
-		self.command_string=input("input:")
+		self.command_string=self.bluetooth.read(self.bluetooth.any())
+		#self.command_string=input("input:")
 		pyb.delay(5)	
 		print(self.command_string)
 		#判断command_string是否符合指令格式 ，即是否是字典中的关键字数字
