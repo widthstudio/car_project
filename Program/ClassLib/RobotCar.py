@@ -8,7 +8,7 @@ class  Car(object):
 		self.right = Car_side(ENr, IN1r, IN2r, timerr, channelr, freqr, pwprr)
 		self.left  = Car_side(ENl, IN1l, IN2l, timerl, channell, freql, pwprl)
 		self.lights=Car_Lights(green_light,red_light,yellow_light)
-		self.command_num=9
+		self.command_num=0
 		self.commands = {
 		#前进3档
 		11:[1,1],12:[1,2],13:[1,3],

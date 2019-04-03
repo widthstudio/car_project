@@ -33,3 +33,5 @@ My_Car=Multif_Car(ENA,IN1,IN2,8,1,20000,0,ENB,IN3,IN4,8,2,20000,0,green_light,re
 
 while True:
 	My_Car.bluetooth_receive_and_run()
+	pyb.delay(500)
+	

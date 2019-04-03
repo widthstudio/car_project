@@ -35,8 +35,5 @@ class  Bluetooth_Car(Car):
 			return 0
 			
 	def bluetooth_receive_and_run(self):
-		if self.read_command_string_and_judge() :
-			self.command_execute(self.command_num)
-		else:
-			pass
-			
+		self.read_command_string_and_judge()
+		self.command_execute(self.command_num)	
