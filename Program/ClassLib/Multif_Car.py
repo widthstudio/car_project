@@ -44,6 +44,8 @@ class Multif_Car(Bluetooth_Car,Bizhang_Car,xunji_Car):
 			self.bizhang()
 		elif self.commands[command_num][0]==6:
 			self.xunji()
+		else:
+			pass
 			
 def main():
 	import pyb
