@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=PB6_X9_TX Pin=P5-2
+Removed Pin From Net: NetName=GND Pin=P5-4
+Change Component Comment : Designator=P1 Old Comment=3V3X4 New Comment=Header 4_7.4V
+Change Component Comment : Designator=P5 Old Comment=5V TX RX GND New Comment=Header 4_BLUETOOTH
+Change Component Comment : Designator=P2 Old Comment=5VX4 New Comment=Header 4_5V
+Change Component Comment : Designator=P9 Old Comment= 5V XJ1 XJ2 XJ3 XJ4 GND New Comment=Header 6_XUNJI
+Change Component Comment : Designator=P11 Old Comment=BOOT1 New Comment=Header 2
+Change Component Comment : Designator=P10 Old Comment=BOOT2 New Comment=Header 2
+Change Component Comment : Designator=P4 Old Comment=GND TRI ECH SER 5V New Comment=Header 5_SUPERVOICE
+Change Component Comment : Designator=P3 Old Comment=GND VIN  New Comment=Header 2
+Change Component Comment : Designator=P7 Old Comment=GNDX4 New Comment=Header 4_GND
+Change Component Comment : Designator=P6 Old Comment=OUT1 OUT2 New Comment=Header 2
+Change Component Comment : Designator=P12 Old Comment=OUT3 OUT4 New Comment=Header 2
+Change Component Designator: OldDesignator=R11~R14 NewDesignator=R11
+Change Component Designator: OldDesignator=R15~R18 NewDesignator=R18
+Change Component Designator: OldDesignator=RST NewDesignator=S2
+Change Component Designator: OldDesignator=USR NewDesignator=S1
+Added Pin To Net: NetName=GND Pin=P5-2
+Added Pin To Net: NetName=PB6_X9_TX Pin=P5-4
+Added Room: Name=PyBoard_PCB

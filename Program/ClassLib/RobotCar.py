@@ -90,6 +90,10 @@ class  Car(object):
 			self.left.forward_with_speed(100)
 			self.right.forward_with_speed(69)
 			print("turn right on level ",level)
+		elif level==4:
+			self.left.forward_with_speed(80)
+			self.right.back_with_speed(80)
+			print("turn right on level ",level)
 		self.lights.yellow_light_on()
 		
 	def turn_left(self,level=2):
@@ -105,6 +109,10 @@ class  Car(object):
 		elif level==3:
 			self.right.forward_with_speed(100)
 			self.left.forward_with_speed(68)
+			print("turn left on level ",level)
+		elif level==4:
+			self.right.forward_with_speed(80)
+			self.left.back_with_speed(80)
 			print("turn left on level ",level)
 		self.lights.yellow_light_on()
 		

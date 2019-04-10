@@ -41,28 +41,28 @@ class Bizhang_Car(Car):
 	
 	def Obstacle_Avoidance_Forward(self):
 		self.Turn_and_Measure( angle=0 )
-		if 0.1<self.l<0.8:				#如果正前方距离 0.1~0.8m
+		if 0.1<self.l<0.5:				#如果正前方距离 0.1~0.8m
 			self.Turn_and_Measure( angle=self.turn_list[self.flag_turn] )  #假定flag_turn = 0表示优先右转 ，测量右侧安全距离（猜-90表示右边）
-			if self.l<0.5:	#如果右侧安全距离小于0.5m，说明有障碍物
+			if self.l<0.4:	#如果右侧安全距离小于0.5m，说明有障碍物
 				self.Turn_and_Measure( angle=self.turn_list[(self.flag_turn+1)%2] )  #测量另一侧安全距离
-				if self.l<0.5:
+				if self.l<0.4:
 					self.back_with_speed()
 					pyb.delay(1000)
 				else:
 					if self.flag_turn:
-						self.turn_right(3)
-						pyb.delay(900)   #右转90°时间
+						self.turn_right(4)
+						pyb.delay(850)   #右转90°时间
 					else:
-						self.turn_left(3)
-						pyb.delay(1120)	 #左转90°时间
+						self.turn_left(4)
+						pyb.delay(1000)	 #左转90°时间
 					##self.flag_turn=(self.flag_turn+2)%2 转向优先级不变，这句就不写了
 			else:
 				if self.flag_turn:		
-					self.turn_left(3)
-					pyb.delay(1120)	 #左转90°时间
+					self.turn_left(4)
+					pyb.delay(1000)	 #左转90°时间
 				else:
-					self.turn_right(3)	
-					pyb.delay(900)   #右转90°时间
+					self.turn_right(4)	
+					pyb.delay(850)   #右转90°时间
 				self.flag_turn=(self.flag_turn+1)%2  #下次转向改变
 		elif self.l <0.1:  #如果前方安全距离小于0.1m，倒车
 			self.back_with_speed()
@@ -73,11 +73,11 @@ class Bizhang_Car(Car):
 	#右侧避障函数
 	def Obstacle_Avoidance_Right(self):
 		self.Turn_and_Measure(-90)
-		if self.l<0.15:
+		if self.l<0.25:
 			self.turn_left(3)
 			pyb.delay(600)
 			self.forward_with_speed(1)
-			pyb.delay(700)
+			pyb.delay(1300)
 			self.turn_right(3)
 			pyb.delay(500)
 			
@@ -85,13 +85,13 @@ class Bizhang_Car(Car):
 		#检测靠左墙体是否太近	
 	def Obstacle_Avoidance_Left(self):
 		self.Turn_and_Measure(+85)	
-		if self.l<0.15:
+		if self.l<0.25:
 			self.turn_right(3)
 			pyb.delay(500)
 			self.forward_with_speed(1)
-			pyb.delay(700)
+			pyb.delay(1300)
 			self.turn_left(3)
-			pyb.delay(600)
+			pyb.delay(400)
 			
 	def bizhang(self,speedlevel=3,stop_flag=0):
 		if stop_flag:  						#如果车辆停止标志位为 1 ，则直接退出避障函数

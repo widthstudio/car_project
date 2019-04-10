@@ -21,7 +21,7 @@ class  Bluetooth_Car(Car):
 		#读取蓝牙信息
 		self.command_string=self.bluetooth.read(self.bluetooth.any())
 		#self.command_string=input("input:")
-		pyb.delay(20)	
+		pyb.delay(10)	
 		print(self.command_string)
 		#判断command_string是否符合指令格式 ，即是否是字典中的关键字数字
 		if self.command_string.isdigit() :		#判断命令是不是数字格式，是就转换成int类型
