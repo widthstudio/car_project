@@ -131,6 +131,40 @@ DocumentUniqueId=TQVPWAJX
 =======
 >>>>>>> 0b51b706e72413e40da101ae9cb7082920ba6493
 
+[Document5]
+DocumentPath=..\..\..\..\All_Software\AD09_Winter\Library\ST Microelectronics\ST Interface DC Motor Controller.IntLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+
+[Document6]
+DocumentPath=..\..\..\..\All_Software\AD09_Winter\Library\Miscellaneous Connectors.IntLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+
+[GeneratedDocument1]
+DocumentPath=Project Outputs for My_Micropython\Design Rule Check - PyBoard_PCB.html
+
+[GeneratedDocument2]
+DocumentPath=..\..\硬件设计\硬件设计\pyboard_eeworld\pcb.PcbDoc.htm
+
 [Configuration1]
 Name=Sources
 ParameterCount=0

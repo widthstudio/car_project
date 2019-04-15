@@ -19,14 +19,14 @@ class  Bluetooth_Car(Car):
 		
 	def read_command_string_and_judge(self):
 		#读取蓝牙信息
-		#self.command_string=self.bluetooth.read(self.bluetooth.any())
-		self.command_string=input("input:")
-		pyb.delay(5)	
+		self.command_string=self.bluetooth.read(self.bluetooth.any())
+		#self.command_string=input("input:")
+		pyb.delay(20)	
 		print(self.command_string)
 		#判断command_string是否符合指令格式 ，即是否是字典中的关键字数字
 		if self.command_string.isdigit() :		#判断命令是不是数字格式，是就转换成int类型
-			self.command_num=int(self.command_string)
-			if self.command_judge():  				#判断数字是不是符合命令格式
+			temp_command_num=int(self.command_string)
+			if self.command_judge(temp_command_num):  				#判断数字是不是符合命令格式
 				return 1
 			else:
 				print('wrong')
@@ -35,8 +35,5 @@ class  Bluetooth_Car(Car):
 			return 0
 			
 	def bluetooth_receive_and_run(self):
-		if self.read_command_string_and_judge() :
-			self.command_execute(self.command_num)
-		else:
-			pass
-			
+		self.read_command_string_and_judge()
+		self.command_execute(self.command_num)	

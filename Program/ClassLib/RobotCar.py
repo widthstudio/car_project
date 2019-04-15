@@ -8,7 +8,7 @@ class  Car(object):
 		self.right = Car_side(ENr, IN1r, IN2r, timerr, channelr, freqr, pwprr)
 		self.left  = Car_side(ENl, IN1l, IN2l, timerl, channell, freql, pwprl)
 		self.lights=Car_Lights(green_light,red_light,yellow_light)
-		self.command_num=9
+		self.command_num=0
 		self.commands = {
 		#前进3档
 		11:[1,1],12:[1,2],13:[1,3],
@@ -110,8 +110,9 @@ class  Car(object):
 		
 		
 	#判断self.command_num 是否符合要求	
-	def command_judge(self):
-		if self.command_num in self.commands.keys():
+	def command_judge(self,temp_command_num):
+		if temp_command_num in self.commands.keys():
+			self.command_num=temp_command_num
 			return True		#输入的指令在指令集里面
 		else:
 			return False	#输入的指令不在指令集里面
@@ -135,7 +136,7 @@ class  Car(object):
 			
 	#判断命令是否符合条件并执行
 	def judge_and_execute(self):
-		if self.command_judge():
+		if self.command_judge(self.command_num):
 			self.command_execute(self.command_num)
 		else:
 			pass

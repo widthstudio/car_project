@@ -1,10 +1,11 @@
 from ClassLib.Bluetooth_Car import Bluetooth_Car
 from ClassLib.Bizhang_Car import Bizhang_Car
-
-class Multif_Car(Bluetooth_Car,Bizhang_Car):
-	def __init__(self,ENr,IN1r,IN2r,timerr,channelr,freqr,pwprr,ENl,IN1l,IN2l,timerl,channell,freql,pwprl,green_light,red_light,yellow_light,servo,trig,echo,uartx,baud_ratex=9600):
+from ClassLib.xunji_Car import xunji_Car
+class Multif_Car(Bluetooth_Car,Bizhang_Car,xunji_Car):
+	def __init__(self,ENr,IN1r,IN2r,timerr,channelr,freqr,pwprr,ENl,IN1l,IN2l,timerl,channell,freql,pwprl,green_light,red_light,yellow_light,xunji_IN1,xunji_IN2,xunji_IN3,xunji_IN4,servo,trig,echo,uartx,baud_ratex=9600):
 		Bluetooth_Car.__init__(self,ENr,IN1r,IN2r,timerr,channelr,freqr,pwprr,ENl,IN1l,IN2l,timerl,channell,freql,pwprl,green_light,red_light,yellow_light,uartx,baud_ratex)
 		Bizhang_Car.__init__(self,ENr,IN1r,IN2r,timerr,channelr,freqr,pwprr,ENl,IN1l,IN2l,timerl,channell,freql,pwprl,green_light,red_light,yellow_light,servo,trig,echo)
+		xunji_Car.__init__(self,ENr,IN1r,IN2r,timerr,channelr,freqr,pwprr,ENl,IN1l,IN2l,timerl,channell,freql,pwprl,green_light,red_light,yellow_light,xunji_IN1,xunji_IN2,xunji_IN3,xunji_IN4)
 		#重写 commands
 		self.commands={
 		#前进3档
@@ -20,7 +21,9 @@ class Multif_Car(Bluetooth_Car,Bizhang_Car):
 		#自由熄火
 		-1:[-1],
 		#避障模式
-		5:[5]
+		5:[5],
+		#循迹模式
+		6:[6]
 		}
 		
 		#重写 command_execute
@@ -39,6 +42,10 @@ class Multif_Car(Bluetooth_Car,Bizhang_Car):
 			self.turn_right(self.commands[command_num][1])
 		elif self.commands[command_num][0]==5:
 			self.bizhang()
+		elif self.commands[command_num][0]==6:
+			self.xunji()
+		else:
+			pass
 			
 def main():
 	import pyb

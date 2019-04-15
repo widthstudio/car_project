@@ -25,7 +25,7 @@ PowerPortNamesTakePriority=0
 PushECOToAnnotationFile=1
 
 [Document1]
-DocumentPath=My_Pyboard\My_Pyboard.SCHLIB
+DocumentPath=..\..\硬件设计\硬件设计\pyboard_eeworld\pboardCN1\pboardCN.SCHLIB
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -39,7 +39,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 
 [Document2]
-DocumentPath=My_Pyboard\PyBoard_PCB.PcbLib
+DocumentPath=..\..\硬件设计\硬件设计\pyboard_eeworld\pboardCN1\pcb1.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -52,11 +52,8 @@ ClassGenCCAutoEnabled=1
 ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 
-[GeneratedDocument1]
-DocumentPath=..\..\硬件设计\硬件设计\pyboard_eeworld\pcb.PcbDoc.htm
-
 [SearchPath1]
-Path=Z:\User\Desktop\car_project\PCB2\My_Pyboard\*.*
+Path=Z:\User\Desktop\硬件设计\硬件设计\pyboard_eeworld\pboardCN1\*.*
 IncludeSubFolders=1
 
 [OutputGroup1]
