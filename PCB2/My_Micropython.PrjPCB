@@ -111,9 +111,6 @@ ClassGenNCAutoScope=None
 [GeneratedDocument1]
 DocumentPath=Project Outputs for My_Micropython\Design Rule Check - PyBoard_PCB.html
 
-[GeneratedDocument2]
-DocumentPath=..\..\硬件设计\硬件设计\pyboard_eeworld\pcb.PcbDoc.htm
-
 [Configuration1]
 Name=Sources
 ParameterCount=0
