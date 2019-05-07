@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=5V Pin=U2-1
+Removed Pin From Net: NetName=GND Pin=U2-3
+Added Pin To Net: NetName=GND Pin=U2-1
+Added Pin To Net: NetName=5V Pin=U2-3
+Added Room: Name=PyBoard_PCB
