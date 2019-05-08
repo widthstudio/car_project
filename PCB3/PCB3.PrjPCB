@@ -25,7 +25,7 @@ PowerPortNamesTakePriority=0
 PushECOToAnnotationFile=1
 
 [Document1]
-DocumentPath=My_Pyboard\My_Pyboard.SCHLIB
+DocumentPath=PyBoard_PCB.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -39,7 +39,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 
 [Document2]
-DocumentPath=PyBoard_PCB.PcbLib
+DocumentPath=PyBoard_PCB.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -52,9 +52,19 @@ ClassGenCCAutoEnabled=1
 ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 
-[SearchPath1]
-Path=Z:\User\Desktop\car_project\PCB2\My_Pyboard\*.*
-IncludeSubFolders=1
+[Document3]
+DocumentPath=PCB3.IntLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
 
 [OutputGroup1]
 Name=Netlist Outputs
