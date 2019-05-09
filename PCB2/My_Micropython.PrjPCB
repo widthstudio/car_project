@@ -72,26 +72,6 @@ DocumentUniqueId=
 >>>>>>> 0b51b706e72413e40da101ae9cb7082920ba6493
 
 [Document2]
-DocumentPath=My_Pyboard.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-<<<<<<< HEAD
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-=======
->>>>>>> 0b51b706e72413e40da101ae9cb7082920ba6493
-
-[Document3]
 DocumentPath=My_Micropython.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -111,8 +91,28 @@ DocumentUniqueId=
 =======
 >>>>>>> 0b51b706e72413e40da101ae9cb7082920ba6493
 
-[Document4]
+[Document3]
 DocumentPath=PyBoard_PCB.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+<<<<<<< HEAD
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+=======
+>>>>>>> 0b51b706e72413e40da101ae9cb7082920ba6493
+
+[Document4]
+DocumentPath=..\..\..\..\All_Software\AD09_Winter\Library\ST Microelectronics\ST Interface DC Motor Controller.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -132,7 +132,7 @@ DocumentUniqueId=TQVPWAJX
 >>>>>>> 0b51b706e72413e40da101ae9cb7082920ba6493
 
 [Document5]
-DocumentPath=..\..\..\..\All_Software\AD09_Winter\Library\ST Microelectronics\ST Interface DC Motor Controller.IntLib
+DocumentPath=..\..\..\..\All_Software\AD09_Winter\Library\Miscellaneous Connectors.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -146,7 +146,21 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 
 [Document6]
-DocumentPath=..\..\..\..\All_Software\AD09_Winter\Library\Miscellaneous Connectors.IntLib
+DocumentPath=My_Pyboard.IntLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+
+[Document7]
+DocumentPath=My_Micropython.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -161,9 +175,6 @@ ClassGenNCAutoScope=None
 
 [GeneratedDocument1]
 DocumentPath=Project Outputs for My_Micropython\Design Rule Check - PyBoard_PCB.html
-
-[GeneratedDocument2]
-DocumentPath=..\..\硬件设计\硬件设计\pyboard_eeworld\pcb.PcbDoc.htm
 
 [Configuration1]
 Name=Sources

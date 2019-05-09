@@ -1,0 +1,2 @@
+Added Component: Designator=*1(MicroUSB)
+Added Member To Class: ClassName=PyBoard_PCB Member=Component *1 MicroUSB
