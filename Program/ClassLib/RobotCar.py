@@ -30,15 +30,15 @@ class  Car(object):
 			
 		self.lights.all_lights_off()
 		if level ==1:
-			self.right.forward_with_speed(100)
-			self.left.forward_with_speed(93)
+			self.right.forward_with_speed(91)
+			self.left.forward_with_speed(100)
 		
 		elif level==2:
-			self.right.forward_with_speed(90)
-			self.left.forward_with_speed(87)
+			self.right.forward_with_speed(85)
+			self.left.forward_with_speed(90)
 
 		elif level==3:
-			self.right.forward_with_speed(80)
+			self.right.forward_with_speed(73)
 			self.left.forward_with_speed(80)
 		
 		print('forward with speed on level ',level)
@@ -80,15 +80,15 @@ class  Car(object):
 		self.lights.all_lights_off()
 		if level==1:
 			self.left.forward_with_speed(100)
-			self.right.forward_with_speed(88)
+			self.right.forward_with_speed(80)
 			print("turn right on level 1")
 		elif level==2:
 			self.left.forward_with_speed(100)
-			self.right.forward_with_speed(80)
+			self.right.forward_with_speed(65)
 			print("turn right on level 2")
 		elif level==3:
 			self.left.forward_with_speed(100)
-			self.right.forward_with_speed(69)
+			self.right.forward_with_speed(0)
 			print("turn right on level ",level)
 		elif level==4:
 			self.left.forward_with_speed(80)
@@ -99,16 +99,16 @@ class  Car(object):
 	def turn_left(self,level=2):
 		self.lights.all_lights_off()
 		if level==1:
-			self.left.forward_with_speed(87)
+			self.left.forward_with_speed(85)
 			self.right.forward_with_speed(100)
 			print("turn left on level 1")
 		elif level==2:
-			self.left.forward_with_speed(78)
+			self.left.forward_with_speed(70)
 			self.right.forward_with_speed(100)
 			print("turn left on level 2")
 		elif level==3:
 			self.right.forward_with_speed(100)
-			self.left.forward_with_speed(68)
+			self.left.forward_with_speed(0)
 			print("turn left on level ",level)
 		elif level==4:
 			self.right.forward_with_speed(80)
