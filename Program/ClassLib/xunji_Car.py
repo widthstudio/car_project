@@ -10,12 +10,12 @@ class xunji_Car(Car):
 		self.xunji_IN3=xunji_IN3
 		self.xunji_IN4=xunji_IN4
 	def xunji(self):
-		self.forward_with_speed(3)
+		self.forward_with_speed(2)
 		if self.xunji_IN4.value()==1:
 			self.turn_right(4)
-			pyb.delay(150)
+			pyb.delay(100)
 		elif self.xunji_IN1.value()==1:
 			self.turn_left(4)
-			pyb.delay(150)
+			pyb.delay(100)
 		else:
 			pass
